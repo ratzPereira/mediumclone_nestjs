@@ -1,4 +1,5 @@
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import { DataSource } from 'typeorm';
 
 const config: PostgresConnectionOptions = {
   type: 'postgres',
@@ -8,7 +9,8 @@ const config: PostgresConnectionOptions = {
   password: 'admin123',
   database: 'mediumclone',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
-  synchronize: true
+  synchronize: false,
+  migrations: [__dirname + '/migrations/**/*.{.ts,.js}'],
 };
 
-export default config;
+export default new DataSource(config);
